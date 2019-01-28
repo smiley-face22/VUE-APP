@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Todo List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <style>
+        #app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+.done{
+    text-decoration: line-through;
+}
+.image{
+    margin-top: 100px;
+}
+
+.field{
+  width: 400px;
+  border:1px solid #0001;
+  border-radius: 5px;
+  padding-right: 10px;
+  margin-bottom: 15px;
+}
+
+h1{
+  font-weight: 1000;
+}
+
+ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+li{
+  display: inline-block;
+}
+.new{
+    margin-left:400px;
+}
+
+    </style>
+</head>
+<body>
+    <div id="vue-app">
+        <div class="container">
+            <div class="row">
+                <div class="col-5"></div>
+                <div class="col-6">
+                    <img src="logo.png" width="150px" height="150px" class="image">
+                    <h1>{{message}}</h1>                              
+                   
+                        <form class="form-inline" id="todoInputForm" @submit.prevent='addTodo'>
+                            <div class="form-group">
+                                <input type="text" v-model="newTodo" class="form-control m-2" placeholder="Todo-Item">                               
+                                <button  class="btn btn-primary">Add Todo</button>
+                                <div class="new"></div>                            
+                        </form>
+                    </div>
+                    <div class=" mt-5">
+                    <ul v-for="(store, index) in stores" :key="index">
+                        <li>
+                            <form class="form-inline field" >
+                                <input type="checkbox" v-model="store.done" class="mx-3" >
+                                <p  :class="{done: store.done}" class="mt-3 mr-3">{{store.name}}</p>
+                                <i class="fas fa-trash-alt ml-auto" v-on:click="remove(index)"></i>
+                            </form>
+                        </li>
+                    </ul>  
+                    </div>
+            
+                </div>
+                <div class="col-3"></div>
+            </div>
+           
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
